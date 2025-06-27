@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
+:root {
+  /* Backgrounds */
+  --color-bg-main: #ffe9c7; /* Light Peach */
+  --color-sidebar: #fdcf78; /* Yellow-Beige */
+  --color-topbar: #ad86c9; /* Lavender Purple */
+
+  /* Message Bubbles */
+  --color-message-sent: #b9fbc0; /* Green */
+  --color-message-received: #fff385; /* Yellow */
+
+  /* Image Placeholder */
+  --color-placeholder: #f9a8d4; /* Pink */
+
+  /* Borders & Accents */
+  --color-border: #cbaa88; /* Soft Brown */
+  --color-text: #3e3e3e; /* Dark Gray */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Example usage */
+body {
+  background-color: var(--color-placeholder);
+  color: var(--color-text);
+  display: flex; /* ← add this */
+  align-items: center; /* vertical centering */
+  justify-content: center; /* horizontal centering */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.box {
+  height: 100%;
+  width: 600px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-bg-main);
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+.top-bar {
+  height: 2rem;
+  background-color: var(--color-topbar);
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  font-size: 8px;
+  flex-shrink: 0;
+  padding-left: 1rem;
+  border-bottom: 1px solid black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bottom-bar {
+  height: 2rem;
+  background-color: var(--color-sidebar);
+  flex-shrink: 0;
+  border-top: 1px solid black;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar {
+  background-color: var(--color-bg-main);
+  height: 100%;
+  width: 200px;
+  display: flex;
+  border-right: 1px solid black;
 }
