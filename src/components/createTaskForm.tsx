@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { Button, TextField, MenuItem, Typography, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Button,
+  TextField,
+  MenuItem,
+  Typography,
+  Paper,
+  TextFieldProps,
+} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { createTask, Task, updateTask } from "./taskApi";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -15,16 +22,6 @@ interface Props {
 }
 
 function CreateTaskForm({ onTaskCreated, initialData }: Props) {
-  type NewTask = Omit<Task, "id">;
-  const [title, setTitle] = useState(initialData?.title || "");
-  const [description, setDescription] = useState(
-    initialData?.description || ""
-  );
-  const [priority, setPriority] = useState(initialData?.priority || "");
-  const [status, setStatus] = useState(initialData?.status || "");
-  const [dueDate, setDueDate] = useState(
-    initialData?.due_date?.split("T")[0] || ""
-  );
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -33,28 +30,23 @@ function CreateTaskForm({ onTaskCreated, initialData }: Props) {
     due_date: "",
   });
 
+  useEffect(() => {
+    if (initialData) {
+      console.log("initialData:", initialData);
+      setFormData({
+        title: initialData.title || "",
+        description: initialData.description || "",
+        status: initialData.status || "pending",
+        priority: initialData.priority ?? 1,
+        due_date:
+          initialData.due_date?.split("T")[0] || dayjs().format("YYYY-MM-DD"),
+      });
+    }
+  }, [initialData]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     await createTask(formData);
-  //     alert("Task created!");
-  //     setFormData({
-  //       title: "",
-  //       description: "",
-  //       status: "pending",
-  //       priority: 1,
-  //       due_date: dayjs().format("YYYY-MM-DD"),
-  //     });
-  //     onTaskCreated(); // Call the parent callback
-  //   } catch (err) {
-  //     alert("Error creating task");
-  //     console.error(err);
-  //   }
-  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,80 +89,71 @@ function CreateTaskForm({ onTaskCreated, initialData }: Props) {
     }
   };
 
-  const inputStyle = { width: "130px", paddingBottom: "1rem" };
-  const column = {
-    width: "150px",
-    paddingLeft: "1rem",
-    paddingBottom: "1rem",
-  };
+  const inputStyle = { mb: 2 };
 
   return (
-    <div className="main-box">
-      <div className="top-bar">
-        <Typography
-          variant="h6"
-          sx={{
-            fontFamily: '"Silkscreen", sans-serif',
-            fontWeight: 400,
-            fontStyle: "normal",
-          }}
-        >
-          Add New Task
-        </Typography>
-      </div>
-      <br />
-      <Paper
+    <div style={{ maxWidth: 600, margin: "2rem auto", padding: "1rem" }}>
+      <Typography
+        variant="h6"
         sx={{
-          backgroundColor: "transparent",
-          boxShadow: "none",
+          fontFamily: '"Silkscreen", sans-serif',
+          fontWeight: 400,
+          mb: 3,
+          textAlign: "center",
         }}
       >
-        <form onSubmit={handleSubmit}>
-          <Grid
-            container
-            rowSpacing={1}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          >
-            <Grid size={6}>
+        Add New Task
+      </Typography>
+
+      <Paper elevation={0} sx={{ p: 3, bgcolor: "background.paper" }}>
+        <form onSubmit={handleSubmit} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} {...({} as any)}>
               <TextField
+                fullWidth
                 label="Title"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
                 required
-                sx={column}
+                sx={inputStyle}
               />
+
               <TextField
+                fullWidth
                 label="Description"
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
                 multiline
                 rows={3}
-                sx={column}
+                sx={inputStyle}
               />
             </Grid>
-            <Grid size={6}>
+
+            <Grid item xs={12} sm={6} {...({} as any)}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                   label="Due Date"
-                  value={dayjs(formData.due_date)}
-                  onChange={(newValue: Dayjs | null) => {
+                  value={formData.due_date ? dayjs(formData.due_date) : null}
+                  onChange={(newValue) =>
                     setFormData({
                       ...formData,
-                      due_date: newValue?.format("YYYY-MM-DD") || "",
-                    });
-                  }}
+                      due_date: newValue ? newValue.format("YYYY-MM-DD") : "",
+                    })
+                  }
                   disablePast
                   slotProps={{
                     textField: {
-                      name: "due_date",
+                      fullWidth: true,
+                      sx: inputStyle,
                     },
                   }}
-                  sx={inputStyle}
                 />
               </LocalizationProvider>
+
               <TextField
+                fullWidth
                 label="Priority"
                 name="priority"
                 type="number"
@@ -180,6 +163,7 @@ function CreateTaskForm({ onTaskCreated, initialData }: Props) {
               />
 
               <TextField
+                fullWidth
                 label="Status"
                 name="status"
                 select
@@ -192,8 +176,13 @@ function CreateTaskForm({ onTaskCreated, initialData }: Props) {
                 <MenuItem value="completed">Completed</MenuItem>
               </TextField>
 
-              <Button variant="text" type="submit" sx={inputStyle}>
-                save
+              <Button
+                fullWidth
+                variant="contained"
+                type="submit"
+                sx={{ mt: 3 }}
+              >
+                Save
               </Button>
             </Grid>
           </Grid>
