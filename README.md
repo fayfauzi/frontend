@@ -37,32 +37,43 @@ Install dependencies:
 
 npm install
 Create a .env file in the backend directory and add your database connection string:
+
+```
 PORT=5000
 DATABASE_URL=postgres://user:password@host:port/dbname
 JWT_SECRET=your_secret_key
 Run database migrations (if any) or initialize your database schema.
+```
 
 Start the backend server:
-
+```
 npm run start
-
-Frontend Setup
+```
+### Frontend Setup
 Navigate to the frontend directory:
-
+```
 cd ../frontend
+```
+
 Install dependencies:
-
+```
 npm install
+```
 Create a .env file in the frontend directory with backend API base URL:
-
+```
 REACT_APP_API_BASE=https://your-backend-url/api
+```
 Start the React development server:
 
+```
 npm start
-API Documentation
+```
+### API Documentation
 Base URL
 
+```
 [http://localhost:5000/api]
+```
 
 | Method | Endpoint     | Description           | Request Body                                   | Response             |
 |--------|--------------|-----------------------|-----------------------------------------------|----------------------|
@@ -76,16 +87,14 @@ The API uses basic authentication (e.g., JWT token or API key) —
 include the Authorization header in requests.
 
 Deployment
-Backend: https://task-manager-5yla.onrender.com/
-Frontend: https://task-manager-fe-fsh1.onrender.com/
+- Backend: https://task-manager-5yla.onrender.com/
+- Frontend: https://task-manager-fe-fsh1.onrender.com/
 
 License
 MIT License
 
-Contact
-Your Name – faeqah.fauzi88@gmail.com
 Project Link: 
-Frontend: https://github.com/fayfauzi/frontend
-Backend: https://github.com/fayfauzi/task-manager/tree/main/backend
+- Frontend: https://github.com/fayfauzi/frontend
+- Backend: https://github.com/fayfauzi/task-manager/tree/main/backend
 
 
