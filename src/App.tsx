@@ -21,10 +21,10 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // make sure it shows loading before fetching
+      setLoading(true);
       const result = await getTasks(searchTerm);
       setTasks(result);
-      setLoading(false); // stop loading after data is fetched
+      setLoading(false);
     };
 
     fetchData();
@@ -65,7 +65,11 @@ function App() {
                   }}
                 />
               </div>
-              <TaskList tasks={tasks} loading={loading} onTasksUpdated={fetchTasks}  />
+              <TaskList
+                tasks={tasks}
+                loading={loading}
+                onTasksUpdated={fetchTasks}
+              />
             </div>
           </div>
           <AddCircleOutlineIcon
@@ -92,7 +96,20 @@ function App() {
           </Dialog>
         </div>
 
-        <div className="bottom-bar"></div>
+        <div
+          className="bottom-bar"
+          style={{ textAlign: "left", padding: "1rem" }}
+        >
+          {tasks.length > 0 ? (
+            <Typography variant="body2" color="text.secondary">
+              {tasks.length} task{tasks.length > 1 ? "s" : ""} added
+            </Typography>
+          ) : (
+            <Typography variant="body2" color="text.secondary">
+              No task :(
+            </Typography>
+          )}
+        </div>
       </Box>
     </Container>
   );

@@ -37,11 +37,51 @@ function CreateTaskForm({ onTaskCreated, initialData }: Props) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   try {
+  //     await createTask(formData);
+  //     alert("Task created!");
+  //     setFormData({
+  //       title: "",
+  //       description: "",
+  //       status: "pending",
+  //       priority: 1,
+  //       due_date: dayjs().format("YYYY-MM-DD"),
+  //     });
+  //     onTaskCreated(); // Call the parent callback
+  //   } catch (err) {
+  //     alert("Error creating task");
+  //     console.error(err);
+  //   }
+  // };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     try {
-      await createTask(formData);
-      alert("Task created!");
+      if (initialData) {
+        // Update mode
+        const updatedTask: Task = {
+          ...initialData, // preserves id and created_at
+          ...formData,
+          priority: Number(formData.priority), // ensure it's number
+        };
+
+        await updateTask(updatedTask);
+        alert("Task updated!");
+      } else {
+        // Create mode
+        const newTask: Omit<Task, "id" | "created_at"> = {
+          ...formData,
+          priority: Number(formData.priority), // ensure it's number
+        };
+
+        await createTask(newTask);
+        alert("Task created!");
+      }
+
+      // Reset the form after success
       setFormData({
         title: "",
         description: "",
@@ -49,9 +89,10 @@ function CreateTaskForm({ onTaskCreated, initialData }: Props) {
         priority: 1,
         due_date: dayjs().format("YYYY-MM-DD"),
       });
-      onTaskCreated(); // Call the parent callback
+
+      onTaskCreated(); // Refresh + close dialog
     } catch (err) {
-      alert("Error creating task");
+      alert("Error submitting task");
       console.error(err);
     }
   };

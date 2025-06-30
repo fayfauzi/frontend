@@ -135,7 +135,6 @@ export default function TaskList({ tasks, loading, onTasksUpdated }: Props) {
         )}
       </Grid>
 
-      {/* Pagination buttons */}
       <div style={{ marginTop: 16, textAlign: "center" }}>
         {[...Array(totalPages)].map((_, i) => (
           <Button
@@ -147,8 +146,8 @@ export default function TaskList({ tasks, loading, onTasksUpdated }: Props) {
               fontWeight: page === i + 1 ? "bold" : "normal",
               color: page === i + 1 ? "primary.main" : "text.primary",
               minWidth: "auto",
-              padding: 0,
               textTransform: "none",
+              paddingTop: "44px"
             }}
           >
             {i + 1}
