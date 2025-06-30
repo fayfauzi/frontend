@@ -1,0 +1,63 @@
+:root {
+  /* Backgrounds */
+  --color-bg-main: #ffe9c7; /* Light Peach */
+  --color-sidebar: #fdcf78; /* Yellow-Beige */
+  --color-topbar: #ad86c9; /* Lavender Purple */
+
+  /* Message Bubbles */
+  --color-message-sent: #b9fbc0; /* Green */
+  --color-message-received: #fff385; /* Yellow */
+
+  /* Image Placeholder */
+  --color-placeholder: #f9a8d4; /* Pink */
+
+  /* Borders & Accents */
+  --color-border: #cbaa88; /* Soft Brown */
+  --color-text: #3e3e3e; /* Dark Gray */
+}
+
+.main-box {
+  background-color: var(--color-bg-main);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  width: 500px;
+  height: 300px;
+  /* display: flex;
+  flex-direction: column; */
+  overflow: hidden;
+}
+
+.top-bar {
+  height: 2rem;
+  background-color: var(--color-topbar);
+  color: black;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  flex-shrink: 0;
+  padding-left: 1rem;
+  border-radius: 8px;
+  border-bottom: 1px solid black;
+}
+
+.field-style {
+  background-image: url('./field.png'); /* or relative path like ../assets/field.png */
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  color: var(--color-text);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.desc-style{
+  background-image: url('./description.png'); /* or relative path like ../assets/field.png */
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  border-radius: 6px;
+  color: var(--color-text);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}

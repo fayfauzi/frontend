@@ -12,8 +12,10 @@ export interface Task {
 
 const API_BASE = "http://localhost:5000/api";
 
-export const getTasks = async (): Promise<Task[]> => {
-  const res = await axios.get<Task[]>(`${API_BASE}/tasks`);
+export const getTasks = async (searchTerm = ""): Promise<Task[]> => {
+  const res = await axios.get<Task[]>(`${API_BASE}/tasks`, {
+    params: searchTerm ? { search: searchTerm } : {},
+  });
   return res.data;
 };
 
