@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  TextField,
-  MenuItem,
-  Typography,
-  Paper,
-} from "@mui/material";
+import { Button, TextField, MenuItem, Typography, Paper } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { createTask, Task, updateTask } from "./taskApi";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -99,7 +93,7 @@ function CreateTaskForm({ onTaskCreated, initialData }: Props) {
           textAlign: "center",
         }}
       >
-        Add New Task
+        {initialData ? "Update Task" : "Add New Task"}
       </Typography>
 
       <Paper elevation={0} sx={{ p: 3, bgcolor: "background.paper" }}>
