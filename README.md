@@ -106,8 +106,23 @@ POST /tasks
   "created_at": "2025-06-30T08:00:00Z"
 }
 ```
+### Database (PostgreSQL)
 
-Security
+This app uses **PostgreSQL** for storing tasks.
+
+1. Ensure PostgreSQL is installed and running.
+2. Create a database, e.g. `taskdb`.
+3. Add your PostgreSQL connection string in the `.env` file:
+
+   ```env
+   PORT=5000
+   DB_USER=postgres
+   DB_HOST=localhost
+   DB_NAME=taskdb
+   DB_PASSWORD=yourpassword
+   DB_PORT=5432
+   ```
+### Security
 The API uses basic authentication (e.g., JWT token or API key) —
 include the Authorization header in requests.
 
