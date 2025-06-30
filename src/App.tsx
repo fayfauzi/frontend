@@ -11,7 +11,6 @@ function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [setEditingTask] = useState<Task | null>(null);
 
   const fetchTasks = async () => {
     const data = await getTasks();

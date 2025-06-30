@@ -5,7 +5,6 @@ import {
   MenuItem,
   Typography,
   Paper,
-  TextFieldProps,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { createTask, Task, updateTask } from "./taskApi";
@@ -14,7 +13,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import "./createForm.css";
-import { Padding } from "@mui/icons-material";
 
 interface Props {
   onTaskCreated: () => void;
