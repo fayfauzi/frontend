@@ -82,6 +82,31 @@ Base URL
 | PUT    | /tasks/:id   | Update a task by ID   | `{ title, description, status, priority, due_date }` | Updated task object   |
 | DELETE | /tasks/:id   | Delete a task by ID   | None                                          | Success message      |
 
+### Request Example for Creating a Task
+
+```json
+POST /tasks
+{
+  "title": "Finish project",
+  "description": "Complete the React project by Friday",
+  "status": "pending",
+  "priority": 2,
+  "due_date": "2025-07-10"
+}
+```
+### Response Example 
+```
+{
+  "id": 1,
+  "title": "Finish project",
+  "description": "Complete the React project by Friday",
+  "status": "pending",
+  "priority": 2,
+  "due_date": "2025-07-10",
+  "created_at": "2025-06-30T08:00:00Z"
+}
+```
+
 Security
 The API uses basic authentication (e.g., JWT token or API key) —
 include the Authorization header in requests.
