@@ -30,7 +30,6 @@ function CreateTaskForm({ onTaskCreated, initialData }: Props) {
 
   useEffect(() => {
     if (initialData) {
-      console.log("initialData:", initialData);
       setFormData({
         title: initialData.title || "",
         description: initialData.description || "",
