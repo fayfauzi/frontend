@@ -1,46 +1,91 @@
-# Getting Started with Create React App
+# Task Manager App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A task management web application with a Node.js + Express backend and React.js frontend.  
+The app uses PostgreSQL as its database and Material-UI for UI components.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Backend
+- RESTful API built with Node.js and Express.js  
+- PostgreSQL database with well-designed schema  
+- Efficient query handling for filtering and sorting tasks  
+- Basic API security (e.g., simple authentication or API keys)  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Frontend
+- React.js user interface  
+- Responsive design using Material-UI  
+- Task creation, update, deletion, and filtering  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+- Node.js (v14 or higher)  
+- PostgreSQL installed and running  
+- npm or yarn package manager  
 
-### `npm run build`
+### Backend Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repo and navigate to the backend directory:
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+   cd your-repo/backend
+Install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm install
+Create a .env file in the backend directory and add your database connection string:
+PORT=5000
+DATABASE_URL=postgres://user:password@host:port/dbname
+JWT_SECRET=your_secret_key
+Run database migrations (if any) or initialize your database schema.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start the backend server:
 
-### `npm run eject`
+npm run start
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Frontend Setup
+Navigate to the frontend directory:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+cd ../frontend
+Install dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+npm install
+Create a .env file in the frontend directory with backend API base URL:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+REACT_APP_API_BASE=https://your-backend-url/api
+Start the React development server:
 
-## Learn More
+npm start
+API Documentation
+Base URL
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[http://localhost:5000/api]
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Method | Endpoint     | Description           | Request Body                                   | Response             |
+|--------|--------------|-----------------------|-----------------------------------------------|----------------------|
+| GET    | /tasks       | Get list of tasks     | None                                          | List of task objects  |
+| POST   | /tasks       | Create a new task     | `{ title, description, status, priority, due_date }` | Created task object   |
+| PUT    | /tasks/:id   | Update a task by ID   | `{ title, description, status, priority, due_date }` | Updated task object   |
+| DELETE | /tasks/:id   | Delete a task by ID   | None                                          | Success message      |
+
+Security
+The API uses basic authentication (e.g., JWT token or API key) —
+include the Authorization header in requests.
+
+Deployment
+Backend: https://task-manager-5yla.onrender.com/
+Frontend: https://task-manager-fe-fsh1.onrender.com/
+
+License
+MIT License
+
+Contact
+Your Name – faeqah.fauzi88@gmail.com
+Project Link: 
+Frontend: https://github.com/fayfauzi/frontend
+Backend: https://github.com/fayfauzi/task-manager/tree/main/backend
+
+
