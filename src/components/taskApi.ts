@@ -10,7 +10,7 @@ export interface Task {
   created_at?: string;
 }
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = process.env.REACT_APP_API_BASE!;
 
 export const getTasks = async (searchTerm = ""): Promise<Task[]> => {
   const res = await axios.get<Task[]>(`${API_BASE}/tasks`, {
